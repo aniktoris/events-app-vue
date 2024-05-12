@@ -18,7 +18,7 @@ const router = createRouter({
       })
     },
     {
-      path: '/event/:id',
+      path: '/events/:id',
       name: 'LayoutView',
       props: true,
       component: LayoutView,
@@ -37,6 +37,24 @@ const router = createRouter({
           path: 'edit',
           name: 'EventEditView',
           component: EditView
+        }
+      ]
+    },
+    {
+      path: '/event/:id',
+      redirect: () => {
+        return {
+          name: 'EventDetailsView'
+        }
+      },
+      children: [
+        {
+          path: 'register',
+          redirect: () => ({ name: 'EventRegister' })
+        },
+        {
+          path: 'edit',
+          redirect: () => ({ name: 'EventEdit' })
         }
       ]
     },
